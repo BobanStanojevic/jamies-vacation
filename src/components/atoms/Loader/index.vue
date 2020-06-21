@@ -32,6 +32,7 @@
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+
   display: inline-block;
 
   &__square {
