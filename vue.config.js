@@ -1,5 +1,6 @@
 const path = require('path')
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/jamies-vacation/' : '/',
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
