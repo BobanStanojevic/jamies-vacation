@@ -10,7 +10,7 @@ export default async function forecastFiveDays(
     {
       method: 'GET',
       path:
-        'http://dataservice.accuweather.com/forecasts/v1/daily/5day/{locationKey}',
+        'https://dataservice.accuweather.com/forecasts/v1/daily/5day/{locationKey}',
       includeCredentials: true,
       pathParameters: {
         locationKey,
