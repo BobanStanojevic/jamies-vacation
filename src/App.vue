@@ -1,32 +1,43 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <ui-header />
+    <overlay v-if="!citiesForecast[0]">
+      <loader />
+    </overlay>
+    <main class="container" v-else>
+      <div class="row">
+        <div class="col-12">
+          <destinations :citiesForecast="citiesForecast" />
+        </div>
+      </div>
+    </main>
+    <ui-footer />
   </div>
 </template>
+<script>
+import { Loader, Overlay } from '@/components/atoms/'
+import { UiHeader, UiFooter } from '@/components/organisms/'
+import { Destinations } from '@/components/molecules'
+import { mapActions, mapGetters } from 'vuex'
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+export default {
+  name: 'App',
+  components: {
+    UiHeader,
+    UiFooter,
+    Destinations,
+    Loader,
+    Overlay,
+  },
+
+  mounted() {
+    this.getFavoriteCitiesWeatherForcast()
+  },
+  computed: {
+    ...mapGetters(['citiesForecast']),
+  },
+  methods: {
+    ...mapActions(['getFavoriteCitiesWeatherForcast']),
+  },
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>
